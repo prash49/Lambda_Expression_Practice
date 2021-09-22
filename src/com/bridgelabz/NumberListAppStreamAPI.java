@@ -3,6 +3,7 @@ package com.bridgelabz;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class NumberListAppStreamAPI {
     public static void main(String[] args) {
@@ -16,7 +17,7 @@ public class NumberListAppStreamAPI {
         // UC2.2 converting and Storing
         List<Double> doubleList = new ArrayList<>(); // for storing
         Function<Integer, Double> doubleFunction = (n) -> n.doubleValue();
-        list.stream().forEach(item -> doubleList.add(doubleFunction.apply(item)));// converting & Storing
+        doubleList = list.stream().map(doubleFunction).collect(Collectors.toList());
         System.out.println(doubleList);
     }
 }

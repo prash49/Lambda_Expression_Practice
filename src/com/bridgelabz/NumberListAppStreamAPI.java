@@ -3,6 +3,7 @@ package com.bridgelabz;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class NumberListAppStreamAPI {
@@ -20,9 +21,21 @@ public class NumberListAppStreamAPI {
         list.stream().forEach(item -> doubleList.add(doubleFunction.apply(item)));// converting & Storing
         System.out.println(doubleList);
 
-        // UC3.3 Storing the result from above Function From result Double list
+        // UC2.3 Storing the result from above Function From result Double list
         // to another list by using collection
         List<Double> listOfDouble = doubleList.stream().collect(Collectors.toList());
         System.out.println(listOfDouble);
+
+        //UC2.4  filtering the even data from the list and storing in another list
+        List<Double> evenList = new ArrayList<>();
+        Predicate<Integer> isEvenFunction = (n) -> n % 2 == 0;
+        listOfDouble.stream().forEach(item -> {
+            if (isEvenFunction.test(item.intValue())) {
+                evenList.add(item);
+            }
+        });
+        System.out.println("original list: " + list);
+        System.out.println("Convetred list: " + listOfDouble);
+        System.out.println("Filtered List:  " + evenList);
     }
 }

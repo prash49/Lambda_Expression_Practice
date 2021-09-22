@@ -3,6 +3,7 @@ package com.bridgelabz;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class NumberPlayListApp {
     public static void main(String[] args) {
@@ -26,20 +27,24 @@ public class NumberPlayListApp {
         list.forEach(obj2);
 
         // Method 3  traversing with Anonymous Consumer interface implementation
-        MyConsumer obj3 =new MyConsumer();
-        list.forEach(new MyConsumer(){
+        MyConsumer obj3 = new MyConsumer();
+        list.forEach(new MyConsumer() {
             public void accept(Integer val) {
                 System.out.println("Value: " + val);
             }
         });
         // method 4 Explicit lambda
         Consumer<Integer> myAction = n -> {
-            System.out.println("Lambda List values:"+n);
+            System.out.println("Lambda List values:" + n);
         };
         list.forEach(myAction);
 
         // method 5 Implicit lambda function
-        list.forEach(item -> System.out.println("Values in list"+item));
+        list.forEach(item -> System.out.println("Values in list" + item));
+
+
+        Function<Integer, Double> doubleFunction = (n) -> n.doubleValue();
+        list.forEach(item -> System.out.println("Double Converted Value: " + doubleFunction.apply(item)));
 
     }
 
